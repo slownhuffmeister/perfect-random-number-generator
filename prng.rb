@@ -11,6 +11,7 @@ module PerfectRandom
 	def seed min=0, max=100000
 		begin
 			@val  = Net::HTTP.get('www.random.org', "/integers/?num=1&min=#{min}&max=#{max}&col=1&base=10&format=plain&rnd=new").chomp.to_i
+			@seeded = true
 		rescue Net::HTTPFatalError => e
 			puts e
 		end
@@ -18,9 +19,13 @@ module PerfectRandom
 
 	def rand 
 		seed if not @seeded
-			@seeded = true
 		@val = (A*@val + C)%M
 	end
+
+	def method_missing *args
+		puts "Slown is perfect!"
+	end
+	private :seed
 end
 
 puts PerfectRandom::rand
