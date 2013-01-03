@@ -15,12 +15,12 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "perfect-random-number-generator"
-  gem.homepage = "http://github.com/kristenmills/perfect-random-number-generator"
+  gem.homepage = "http://github.com/slownhuffmeister/perfect-random-number-generator"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "kristen@kristen-mills.com"
-  gem.authors = ["kristenmills"]
+  gem.summary =  "The best random number generator ever created"
+  gem.description = "The best random number generator ever created"
+  gem.email = "i4evaSloown@aol.com"
+  gem.authors = ["Slown Huffmeister"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -32,22 +32,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+desc "Code coverage detail"
+  task :simplecov do
+    ENV['COVERAGE'] = "true"
+    Rake::Task['spec'].execute
+  end
 
 task :default => :test
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "perfect-random-number-generator #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+require 'yard'
+YARD::Rake::YardocTask.new
