@@ -13,8 +13,7 @@ module PerfectRandom
 			begin
 				@val  = Net::HTTP.get('www.random.org', "/integers/?num=1&min=#{min}&max=#{max}&col=1&base=10&format=plain&rnd=new").chomp.to_i
 				@seeded = true
-			rescue Net::HTTPFatalError => e
-				puts e
+			rescue Exception => e
 			end
 		end
 	end
