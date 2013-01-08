@@ -1,4 +1,4 @@
-#Perfect Random Number Generator 1.0.1
+#Perfect Random Number Generator 1.0.2
 perfection created by Slown Huffmeister
 
 ##About
